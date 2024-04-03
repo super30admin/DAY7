@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 /**
  * Greedy Approach:
+ * A. Pick Max and skip alternate
  * Fail Case 1: [1, 3, 1, 1, 1, 1, 9] amount = 12
  * 1 + 1 + 1 + 9 = 12
  * 
