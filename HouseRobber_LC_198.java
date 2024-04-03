@@ -3,7 +3,9 @@
 // (https://leetcode.com/problems/house-robber/)
 // Algo:
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Greedy Approach:
@@ -122,6 +124,50 @@ public class HouseRobber_LC_198 {
             prev = Math.max(pick, notPick);
         }
         return prev;
+    }
+
+    /**
+     * To find path use a boolean[] to store true if pick > notPick.
+     * Backtrack from n-1 to find the path as picked[0] is always true (base case).
+     * 
+     * @param nums
+     * @return
+     */
+    public List<Integer> rob_path(int[] nums) {
+        List<Integer> path = new ArrayList<>();
+        int n = nums.length;
+        if (n == 1) {
+            path.add(nums[0]);
+            return path;
+        }
+        boolean[] picked = new boolean[n];
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        picked[0] = true;
+        dp[1] = Math.max(nums[1], nums[0]);
+        if (nums[1] > nums[0]) {
+            picked[1] = true;
+        }
+
+        for (int index = 2; index < n; index++) {
+            int pick = nums[index] + dp[index - 2];
+            int notPick = dp[index - 1];
+            dp[index] = Math.max(pick, notPick);
+            if (pick > notPick) {
+                picked[index] = true;
+            }
+        }
+        // System.out.println(picked[i]);
+
+        for (int i = n - 1; i >= 0; i--) {
+            if (picked[i]) {
+                path.add(nums[i]);
+                i--;
+            }
+        }
+        System.out.println(path);
+
+        return path;
     }
 
 }
