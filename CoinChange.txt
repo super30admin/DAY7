@@ -1,0 +1,68 @@
+Time Complexity: O(n)
+Space Complexity: O(n)
+Challenges faced: Coming up with Optimized space.
+
+Approach: 
+Below solution handles input elements without any sort order. Consider amount is 11. 
+To make an amount of 11 from 0 coins , zero values coins can never give the amount. To find minimum number of coins , lets start the value to infinity.
+Number of zero coins required to form amount 11 is infinity. Always total number of coins to form the amount should be minimum. 
+Hence initally take a highest value. Input coins are [1,2,5]. to form an amount of 11, you need 11 one rupee coins.  
+To form an amount of 6 from 5--> you need 1 five rupee coins + minimum number of coins to get amount 1( this is calculated cumulatively). 
+To form amount 11--> you need 1 five rupee coin+ Minimum number of coins to form amount (11-5)=6.
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[][] dp=new int[coins.length+1][amount+1];
+        for(int i=1;i<=amount;i++)        
+            dp[0][i]=99999;
+        
+        int min=0;
+        for(int i=1;i<=coins.length;i++){
+            for(int j=1;j<=amount;j++){
+                //j is amount
+                if(j>=coins[i-1]){                    
+                    dp[i][j]=Math.min(dp[i-1][j], 1+dp[i][j-coins[i-1]]);
+                }else{
+                    dp[i][j]=dp[i-1][j];
+                }                
+            }
+        } 
+        if(dp[coins.length][amount]== 99999)  
+            return -1;  
+        return dp[coins.length][amount];
+    }
+}
+Time Complexity: O(n)
+Space Complexity: O(1)
+Challenges faced: Coming up with Optimized space.
+
+Approach: 
+Below solution handles input elements without any sort order. Consider amount is 11. 
+To make an amount of 11 from 0 coins , zero values coins can never give the amount. To find minimum number of coins , lets start the value to infinity.
+Number of zero coins required to form amount 11 is infinity. Always total number of coins to form the amount should be minimum. 
+Hence initally take a highest value. Input coins are [1,2,5]. to form an amount of 11, you need 11 one rupee coins.  
+To form an amount of 6 from 5--> you need 1 five rupee coins + minimum number of coins to get amount 1( this is calculated cumulatively). 
+To form amount 11--> you need 1 five rupee coin+ Minimum number of coins to form amount (11-5)=6. 
+Note: If the (coin > amount) then minimum coins required would always be minimum coins in all the previous denomination. 
+/**** Space optimized *****/
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int[] dp=new int[amount+1];
+        for(int i=1;i<=amount;i++)        
+            dp[i]=99999;
+        
+        int min=0;
+        for(int i=1;i<=coins.length;i++){
+            for(int j=1;j<=amount;j++){
+                //j is amount
+                if(j>=coins[i-1]){                    
+                    dp[j]=Math.min(dp[j], 1+dp[j-coins[i-1]]);
+                }else{
+                    dp[j]=dp[j];
+                }                
+            }
+        } 
+        if(dp[amount]>= 99999)  
+            return -1;  
+        return dp[amount];
+    }
+}
