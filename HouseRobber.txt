@@ -1,0 +1,44 @@
+Time complexity: O(n)
+Space complexity: O(n)
+Challenges faced: Coming up with solution. Question didn't state to rob houses alternatively.
+Getting this thought of robbing in any pattern provided two houses next to each other cant be choosen is challenging.
+
+Approach: Keep calculating the max of prev and sum of(current element and next to next element). Which ever is maximum amongst both store it. 
+While going to rob next house , keep checking the past theft amount and pick the maximum out of both. 
+
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length==1) return nums[0];        
+        int dp[]=new int[nums.length];
+        dp[0]=nums[0];
+        dp[1]=Math.max(nums[0], nums[1]);
+       
+        for(int i=2;i<nums.length;i++){
+            dp[i]=Math.max(dp[i-1], nums[i]+dp[i-2]);
+        }
+
+        return dp[nums.length-1];
+    }
+}
+
+Time complexity: O(n)
+Space complexity: O(1)
+Approach: Keep calculating the max of prev and sum of(current element and next to next element). Which ever is maximum amongst both store it. 
+While going to rob next house , keep checking the past theft amount and pick the maximum out of both. 
+/** Space Optimized Solution ***/
+class Solution {
+    public int rob(int[] nums) {
+        if(nums.length==1) return nums[0];        
+        int dp[]=new int[nums.length];
+        int prev=nums[0];
+        int curr=Math.max(nums[0], nums[1]);
+       
+        for(int i=2;i<nums.length;i++){            
+            int temp =Math.max(curr, nums[i]+prev);            
+            prev=curr;
+            curr=temp;
+        }
+
+        return curr;
+    }
+}
