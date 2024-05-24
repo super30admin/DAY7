@@ -6,7 +6,7 @@ Approach-
  * TC- O(n), SC- O(n)
 ***/
 
-class Solution {
+class HouseRobber {
     //TC - O(n)
     //SC- O(n)
 
