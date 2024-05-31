@@ -1,7 +1,7 @@
 '''
 ## Problem1 (https://leetcode.com/problems/coin-change/)
 
-Solution1: Exhaustive Recurssion
+Solution1: Exhaustive Recursion
 TC: O(2^n)
 SC: O(n) due to recursive stack
 Did this code successfully run on Leetcode : yes
@@ -14,7 +14,7 @@ Did this code successfully run on Leetcode : yes
 Any problem you faced while coding this : no
 '''
 
-#-----------------------Exhaustive Recurssion-----------------------
+#-----------------------Exhaustive Recursion-----------------------
 
 class Solution1:
   def coinChange(self, coins, amount):
