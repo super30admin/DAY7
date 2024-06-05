@@ -13,7 +13,7 @@ SC: O(n) for the 2-D matrix since number of columns is 2 which is constant
 Did this code successfully run on Leetcode : yes
 Any problem you faced while coding this : no
 
-Solution2: Dynamic programming without a 2-D matrix using 2 variables
+Solution3: Dynamic programming without a 2-D matrix using 2 variables
 TC: O(n) running the loop to compute the final values
 SC: O(1) since only 2 variables and a temporary variable is used
 Did this code successfully run on Leetcode : yes
