@@ -1,5 +1,8 @@
 import java.util.Arrays;
-
+//TC: O(m * n)
+//SC: O(m * n)
+// m = amount
+// n = coins.length
 public class CoinChange {
     public int coinChange(int[] coins, int amount) {
         if(coins == null || coins.length == 0 || amount < 0){

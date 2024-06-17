@@ -1,4 +1,6 @@
 import java.util.Arrays;
+//TC: O(N)
+//SC: O(1)
 public class HouseRobber {
     public int rob(int[] nums) {
         if(nums.length == 0) return 0;
