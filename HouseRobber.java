@@ -24,61 +24,24 @@ public class HouseRobber {
         if(len == 2) {
             return Math.max(nums[0], nums[1]);
         }
-        return helperRecursion(nums, 0);
+        return helperRecursion(nums, 0, 0);
     }
 
-    public static int[] removeTheElement(int[] arr, int index)
-    {
-
-        // If the array is empty
-        // or the index is not in array range
-        // return the original array
-        if (arr == null || index < 0
-                || index >= arr.length) {
-
-            return arr;
-        }
-
-        // Create another array of size one less
-        int[] anotherArray = new int[arr.length - 1];
-
-        // Copy the elements except the index
-        // from original array to the other array
-        for (int i = 0, k = 0; i < arr.length; i++) {
-
-            // if the index is
-            // the removal element index
-            if (i == index) {
-                continue;
-            }
-
-            // if the index is not
-            // the removal element index
-            anotherArray[k++] = arr[i];
-        }
-
-        // return the resultant array
-        return anotherArray;
-    }
-
-    private static int helperRecursion(int[] nums, int amount) {
-        //base
-        if (nums.length == 0) {
+    private static int helperRecursion(int[] nums, int amount, int index) {
+        // Base condition: If index goes out of bounds, return the accumulated amount
+        if (index >= nums.length) {
             return amount;
         }
-        if (nums.length == 1) {
-            return Math.max(amount, amount + nums[0]);
+        // Base condition: If index is at the last element, add it to the amount
+        if (index == nums.length - 1) {
+            return amount + nums[index];
         }
 
-        int chosen = nums[0];
-        int[] newNums1 = removeTheElement(nums, 0);
-        int[] newNums2 = removeTheElement(newNums1, 0);
-
         //case1 - choose and remove both chosen and chosen+1
-        int case1 = helperRecursion(newNums2, amount + chosen);
+        int case1 = helperRecursion(nums, amount + nums[index], index+2);
 
-        //case2 - don't choose and remove the unchosen one
-        int case2 = helperRecursion(newNums1, amount);
+        //case2 - don't choose and remove the un-chosen one
+        int case2 = helperRecursion(nums, amount, index+1);
 
         return Math.max(case1, case2);
     }
@@ -107,8 +70,8 @@ public class HouseRobber {
                 187,199,114,235,197,187,69,129,64,214,228,78,188,67,205,94,205,169,241,202,144,240};
         System.out.println("Total amount that can be robber from nums " +
                 "using recursion is " + robRecursion(nums));
-//        System.out.println("Total amount that can be robber from nums2 " +
-//                "using recursion is " + robRecursion(nums2));
+        System.out.println("Total amount that can be robber from nums2 " +
+                "using recursion is " + robRecursion(nums2));
         System.out.println("Total amount that can be robber from nums " +
                 "using dp is " + robDP(nums));
         System.out.println("Total amount that can be robber from nums2 " +
