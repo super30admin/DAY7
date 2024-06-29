@@ -9,34 +9,40 @@
   The final element in the matrix gives the answer. */
 
 public class CoinChange {
-    public int change(int amount, int[] coins) {
-        int m = coins.length;
-        int n = amount;
-        int[][] dp = new int[m+1][n+1];
-
-        if(amount == 0) return 1;
+    public int coinChange(int[] coins, int amount) {
+        // null case
+        if(amount == 0) return 0;
         if(coins.length == 1) {
             if(amount == coins[0]) return 1;
-            else if(amount < coins[0]) return 0;
+            else if(amount < coins[0]) return -1;
+        }
+        // create matrix of num of coins needed for each denomination to reach target
+        // add dummy row at the beginning and populate it with max value
+        // get min of previous row or (denominations x target -current amt)
+
+        // last element gives the answer
+
+        int n = coins.length;
+        int m = amount;
+        int max = 999999;
+        int[][] matrix = new int[n+1][m+1];
+        matrix[0][0] = 0;
+        for (int i = 1; i <= m; i++) {
+            matrix[0][i] = max;
         }
 
-        dp[0][0] = 1;
-        for(int i =1;i<=m;i++){  //O(m)
-            dp[i][0] = 1;
-        }
-         
+        for (int j = 1; j <= n; j++) {
+            for (int i = 1; i <= m; i++) {
+                if (i < coins[j-1]) {
+                    matrix[j][i] = matrix[j - 1][i];
+                } else {
+                    matrix[j][i] = Math.min(matrix[j - 1][i],1+ matrix[j][i - coins[j - 1]]);
+                }
 
-        for(int i=1;i<=m;i++){
-            for(int j= 1;j<=n;j++){             //O(m*n)
-                if(coins[i-1]>j){
-                    dp[i][j] = dp[i-1][j];
-                }else{
-                    dp[i][j]= dp[i-1][j] + dp[i][j - coins[i-1]];
-                } 
             }
         }
-
-        int result = dp[m][n];
-        return result;
+        int res = matrix[n][m]; 
+        return  res >= 999999? -1 : matrix[n][m];
     }
+
 }
