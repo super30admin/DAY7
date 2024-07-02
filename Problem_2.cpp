@@ -1,7 +1,7 @@
 /*
-Time Complexity: O(m*n)
+Time Complexity: O(n)
 
-Space Complexity: O(n) 
+Space Complexity: O(1) 
 */
 
 #include<iostream>
