@@ -1,0 +1,29 @@
+class Solution:
+    # def rob(self, nums: List[int]) -> int:
+    #     if nums==None or len(nums)==0:
+    #         return 0
+    #     return self.recurse(nums,0,0)
+    # def recurse(self,nums:List[int],index:int,amount:int)-> int:
+    #     #base
+    #     if index>=len(nums):
+    #         return amount
+    #     #logic
+    #     #dont rob cuurent house
+    #     case1=self.recurse(nums,index+1,amount)
+    #     # rob cuurrent house
+    #     case2=self.recurse(nums,index+2,amount+nums[index])
+    #     return max(case1,case2)
+    def rob(self, nums: List[int]) -> int:
+        if nums is None or len(nums)==0:
+            return 0
+        n=len(nums)
+        dp=[[0 for j in range(2)] for i in range(n)]
+        print(dp)
+        for i in range(n):
+            #not choose
+            dp[i][0]=max(dp[i-1][0],dp[i-1][1])
+            #choose 
+            dp[i][1]=dp[i-1][0]+nums[i]
+        return max(dp[n-1][0],dp[n-1][1])
+        #TC-O(N)
+        #SC-O(N)
