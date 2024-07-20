@@ -1,4 +1,6 @@
 //Brute force
+//Time Complexity: O(n)
+//Space Complexity: O(1)
 
 class Solution {
     public int rob(int[] nums) {
@@ -29,7 +31,8 @@ class Solution {
 }
 
 //Just a small Improvement with Dynamic Programming
-
+//Time Complexity: O(n)
+//Space Complexity: O(n)
 class Solution {
     public static int rob(int[] nums) {
         int n = nums.length;
