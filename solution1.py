@@ -1,3 +1,6 @@
+# Time: O(n)
+# space: O(n)
+
 class Solution(object):
     def coinChange(self, coins, amount):
         # tabulation 
