@@ -1,0 +1,39 @@
+#DP1
+## Problem2 (https://leetcode.com/problems/house-robber/)
+#Time Complexity o(n)
+#Space Complexity o(1)
+#Leetcode run  successfully ran
+
+class Solution {
+    public int rob(int[] nums) {
+        int sum1=0;
+        int sum2=0;
+        int length=nums.length;
+        int maximum=0;
+        if(length==0)
+            return 0;
+        else if(length==1)
+            return nums[0];
+        else if(length==2)
+            return nums[0]>nums[1]?nums[0]:nums[1];
+        else
+        {
+        //int max[]=new int[nums.length];
+        int a=nums[0];
+        int b=nums[1];
+        int c = a+nums[2];
+        int d =0;
+        maximum = Integer.max(Integer.max(a,b),c);
+        for(int i=3;i<nums.length;i++)
+        { 
+          d=nums[i]+Integer.max(b,a);
+          maximum =Integer.max(maximum,d);
+        a=b;
+        b=c;
+        c=d;
+        }
+        }
+            
+        return maximum;
+    }
+}
