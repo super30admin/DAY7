@@ -1,0 +1,70 @@
+
+// Time : exponential = 2 (power n*m) where n is no of coins and m is amount
+// Space : O(1) we are not using any auxillary data structure
+// leetcode ran : No, Time Limit Exceed due to lots of recursive calls
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+       if(coins == null) return -1;
+       return helper(coins, amount, 0, 0);      
+    }
+    
+    
+    private int helper(int[] coins, int amount, int i, int res)
+    {
+        //base case, if index goes out of bound and amount goes negative
+        if(i>=coins.length|| amount<0) return -1;
+        //when we made full use of coins and amount becoms 0, in that case return min coins required in that path
+        if(amount==0) return res;
+        
+        int case1= helper(coins, amount, i+1, res);
+        int case2= helper(coins, amount-coins[i], i, res+1);
+        //if not possible to make sum from denomination in case 1 then return case 2
+        if(case1==-1)
+            return case2;
+        else if(case2==-1)
+            return case1;
+        return Math.min(case1,case2);
+    }
+}
+
+//Time : O(m*n) where m is no of coins and n is sum required
+//SPace: O(m*n) same as above
+//Executed :yes
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        //since we are adding 0 row and 0 column
+        int m=coins.length+1;
+        int n= amount+1;
+     int[][] dp = new int[m][n];
+    //fill 0th column by 0
+        for(int i=0;i<m;i++)
+        {
+            dp[i][0]=0;
+        }
+        //fill columns and 0th row by max value which will not exceed from amount+1
+         for(int j=0;j<n;j++)
+        {
+            dp[0][j]=amount+1;
+        }
+        //start filling matrix from row 1 and column 1
+        for(int i=1; i<m;i++)
+        {
+            for(int j=1;j<n;j++)
+            {
+                //if amount column is not equal to the row coins we are comparing, take prev row values
+                if(j<coins[i-1])
+                    dp[i][j]=dp[i-1][j];
+                //min from previous row and current calculated min by subtracting current denominations value + 
+                else
+                    dp[i][j]= Math.min(dp[i-1][j],dp[i][j-coins[i-1]]+1);      
+            }
+        }
+        int res=dp[m-1][n-1];
+        System.out.println(res);
+        //if no solution found then res contains watever is present in prev row which was amount+1 return -1 in that case
+        if(res==amount+1)
+            return -1;
+        else
+         return res;
+}
+}
