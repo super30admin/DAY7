@@ -6,7 +6,6 @@
 var coinChange = function (coins, amount) {
   let array = new Array(amount + 1);
   array.fill(Number.MAX_SAFE_INTEGER);
-
   array[0] = 0;
 
   for (let coinIndex = 0; coinIndex < coins.length; coinIndex++) {
@@ -19,10 +18,6 @@ var coinChange = function (coins, amount) {
         );
       }
     }
-  }
-
-  if (array[amount] == Number.MAX_SAFE_INTEGER) {
-    return -1;
   }
 
   return array[amount];

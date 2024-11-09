@@ -17,7 +17,7 @@ var numberOfWaysToMakeChange = function (n, denoms) {
 test("Scenario #1: BaseCase", () => {
   let coins = [];
   let amount = 1;
-  expect(numberOfWaysToMakeChange(amount, coins)).toStrictEqual(-1);
+  expect(numberOfWaysToMakeChange(amount, coins)).toStrictEqual(0);
 });
 test("Scenario #1: Happy Path", () => {
   let coins = [1, 2, 5];

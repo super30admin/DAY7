@@ -43,3 +43,6 @@
   - 
 
 - Paint House
+- Based on the constraint data structure should be picked.  
+  - e.g In coin change with target amount we are having 2 inputs so we will be using matrix. 
+  - When maximum ways are asked and only coins are provided then array will be used. (House Robber problem)
