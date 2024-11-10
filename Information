@@ -1,0 +1,77 @@
+
+What is DP?
+=> Dynamic Programming (DP) is optimization of repeated sub problems, so for a problem we might have many sub problems
+but if the sub problems are not repeated then for sure it is not a DP problem
+
+ARRAY NEED NOT BE SORTED
+
+Approach for DP:
+1) Bottom Up DP {Tabulation}
+    => Here we will be solving the smaller sub problems, by solving the smaller sub problems we will end up in bigger
+       problem in last.
+
+2) Top Bottom DP {Memoization}
+    => Here we will start with solving the bigger problems and on the way of solving those bigger problems we will be
+       memoizing those intermediate values, and those memoized problems will be reused if we and on same repeated sub
+       problems.
+
+       Memoization is a dynamic programming (DP) strategy that stores the results of problem-solving to avoid
+       recalculating them when the same problem occurs again.
+
+Greedy Approach => Taking wise decision at each and every step leads us to global soln.
+
+Be Exhaustive => Trying all the possibilities meaning choose and no choose scenarios. Exhaustive tree is nothing but a
+RECURSIVE approach, so the time complexity would be exponential 2^n {Time Limit exceeded}. At each and every step, we
+are having two branches, so with addition of each input the runtime of algorithm becomes double, hence exponential
+time complexity.
+
+For Dp,
+    1. First approach is to look at any problem with Greedy Approach, and check if it works for all scenarios
+        eg: in coin problem, it is try to choose maximum denomination for every case which may or may not
+        give the total result, so greedy approach won't work.
+
+    2. If Greed fails, second approach we should choose is exhaustive, in Bottom Up DP we will be using right
+        to left choose and no choose approach as smaller sub problems would have been solved earlier
+
+    3. If we want to optimize the exhaustive approach with DP, repeated sub problems should be present,
+       eg:
+       (i) [2, 5]^ 9 && [2, 5]^7 => these are not repeated sum problems as the statement for both would be different
+       like in first it would be min number of coins needed to form a sum of 9 and for other it will be 7.
+
+       (ii) [2, 5]^7 && [2, 5]^7 => these are exactly the same
+
+   Note: In both DP and exhaustive, we don't need the array to be sorted
+
+
+Certainly! Here’s the comparison in a point-by-point format, suitable for pasting into IntelliJ:
+
+COMPARISON
+==========
+Greedy Approach
+
+    Time Complexity: O(mlogm)
+    Space Complexity: O(1)
+    Accuracy: May be inaccurate; optimal only with canonical coin sets.
+    Pros: Very fast and low on memory usage.
+    Cons: Doesn’t always give the minimum solution for non-canonical coin sets.
+    Best Use Case: When working with small problems or canonical sets like [1, 5, 10, 25] (e.g., U.S. coins).
+
+Exhaustive Search Approach
+
+    Time Complexity: O(2^(m+n)), where m is the number of coin denominations and n is the target amount.
+    Space Complexity: O(m+n) for recursion depth and subproblem storage.
+    Accuracy: Always accurate, as it explores all possible combinations.
+    Pros: Guarantees the correct minimum because it tries every possible solution.
+    Cons: Exponential time complexity, leading to Time Limit Exceeded for large inputs.
+    Best Use Case: Very small inputs where DP might not be feasible and accuracy is critical.
+
+Dynamic Programming (DP) Approach
+
+    Time Complexity: O(m⋅n)
+    Space Complexity: O(m⋅n) if matrix and O(n) if array
+    Accuracy: Always accurate and gives the minimum number of coins for any set of denominations.
+    Pros: Reliable for all coin sets and guarantees an optimal solution.
+    Cons: Higher space and time complexity, making it demanding for large amounts or many coin types.
+    Best Use Case: Problems where an exact minimum solution is required, even with arbitrary or complex coin sets.
+
+
