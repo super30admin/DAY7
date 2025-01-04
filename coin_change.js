@@ -4,6 +4,8 @@
  * @return {number}
  */
 var coinChange = function (coins, amount) {
+  if (coins.length == 0) return -1;
+  
   let array = new Array(amount + 1);
   array.fill(Number.MAX_SAFE_INTEGER);
   array[0] = 0;
