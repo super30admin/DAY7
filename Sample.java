@@ -43,3 +43,36 @@ class Solution {
         return dp[coins.length][amount];
     }
 }
+
+
+// Time complexity:O(n)
+// Space complexity:O(n)
+class Solution {
+    public int rob(int[] nums) {
+        int[][] dp = new int[nums.length][2];
+        
+
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+
+        for (int i=1;i<dp.length;i++) {
+            for (int j=0;j<2;j++) {
+
+                if (j == 0) {
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j+1]);
+                }
+                else if (j == 1) {
+                    dp[i][j] = nums[i] + dp[i-1][j-1];
+                }
+
+            }
+        }
+
+        System.out.println(Arrays.toString(dp[nums.length-1]));
+
+        return Math.max(dp[nums.length-1][0], dp[nums.length-1][1]);
+    }
+}
