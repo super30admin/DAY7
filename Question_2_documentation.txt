@@ -1,0 +1,9 @@
+Time Complexity : O(n)
+Space Complexity : O(1)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I used the approach of O(1) space I shared with the instructor. logic is dp[i] = max(dp[i+1],arr[i]+dp[i+2]). Since at one state,
+we are just using the previous 2 states info, we can store them in 2 variables

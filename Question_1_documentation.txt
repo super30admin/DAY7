@@ -1,0 +1,8 @@
+Time Complexity : O(n*amount)
+Space Complexity : O(n*amount)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+Created a dp table and wrote bottom up solution such that dp[amount][i] = min(dp[amount][i+1],1+dp[amount-arr[i]][i])
