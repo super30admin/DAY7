@@ -3,6 +3,10 @@
  * Space complexity: O(1)
  * Ran on leetcode? Yes
  * Any problems faced?: No
+ *
+ * Approach:
+ * - Greedy fails here if the array is like 2,8,9,8,1,5
+ * - There are repeating sub-problems, so can use DP to compute min at each row based on the rules
  */
 public class HouseRobber {
     public int rob(int[] nums) {
@@ -24,7 +28,7 @@ public class HouseRobber {
 
     public static void main(String[] args) {
         HouseRobber obj = new HouseRobber();
-        int[] values = {2,7,9,3,1};
+        int[] values = {2,7,9,8,1,5};
         int result = obj.rob(values);
         System.out.println("Result: " + result);
         assert (result == 12);
