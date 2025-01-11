@@ -8,7 +8,7 @@
 
 // Approach 3:
     // TC:O(m*n), where m = number of coins and n = amount
-    // SC: O(m)
+    // SC: O(n)
 
 import java.util.*;
 
