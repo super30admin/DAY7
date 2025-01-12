@@ -87,3 +87,25 @@ class Solution {
         return Math.max(dp[nums.length-1][0],dp[nums.length-1][1]);
     }
 }
+
+// Time Complexity : 0(n) n=no of houses
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+class Solution {
+    public int rob(int[] nums) {
+        if(nums==null||nums.length==0){
+            return 0;
+        }
+
+        int skip=0,take=0;
+        for(int i=0;i<nums.length;i++){
+            int tempSkip=skip;
+            skip=Math.max(skip,take);
+            take=nums[i]+tempSkip;
+        }
+
+        return Math.max(skip,take);
+    }
+}
