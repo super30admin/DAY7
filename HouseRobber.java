@@ -7,6 +7,18 @@
  * Approach:
  * - Greedy fails here if the array is like 2,8,9,8,1,5
  * - There are repeating sub-problems, so can use DP to compute min at each row based on the rules
+ *  example -
+ *     skip | rob
+ *  2   0   | 2
+ *  7.  2.  | 7
+ *  9.  7.  | 11
+ *  8  11.  | 15
+ *  1  15.  | 12
+ *  5. 15.  | 20
+ *
+ *  1. if we skip current house, the max is the max robbed till the last house
+ *  2. if we rob current house, the previous house would have been skipped,
+ *  so rob the current house and update rob with new value
  */
 public class HouseRobber {
     public int rob(int[] nums) {
@@ -15,15 +27,16 @@ public class HouseRobber {
         if (nums.length == 1)
             return nums[0];
 
-        int prev = 0;
-        int max = 0;
+        int skip = 0;
+        int rob = 0;
 
-        for (int num : nums) {
-            int temp = Math.max(max, prev + num);
-            prev = max;
-            max = temp;
+        for (int n: nums) {
+            int currSkip = skip;
+            skip = Math.max(skip, rob);
+            rob = currSkip + n;
         }
-        return max;
+
+        return Math.max(skip, rob);
     }
 
     public static void main(String[] args) {
