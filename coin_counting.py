@@ -18,4 +18,7 @@ class Solution:
         if dp[n][amount] == amount + 1:
             return -1
         return dp[n][amount]
+    #time complexity - o(nxamount)
+    #space complexity - o(nxamount)
+    
         
