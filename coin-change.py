@@ -15,6 +15,21 @@ def coinChange(coins, amount):
     :type amount: int
     :rtype: int
     """
+    #     m = len(coins)
+    #     n = amount
+    #     max_amount = 10*10*10*10 + 1
+    #     result = self.helper(coins, 0, amount)
+    #     if result == max_amount:
+    #         return -1
+    #     return result
+
+    # def helper(self, coins, i, amount):
+    #     if (amount == 0):return 0
+
+    #     if (i == len(coins) or amount < 0):
+    #         return 10*10*10*10 + 1
+    #     return min(self.helper(coins, i+1, amount), 1+ self.helper(coins, i,amount - coins[i]))
+    
     m = len(coins)
     n = amount
     max_amount = amount + 1
