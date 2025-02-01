@@ -1,4 +1,4 @@
-// Time Complexity : 2^ m*n
+// Time Complexity : 2^ m+n
 // Space Complexity : O(1)
 // Did this code successfully run on Leetcode : it gave output limit exceeded error
 // Any problem you faced while coding this : i faced while implimenting recuring i need to do more practise on recursion problems
@@ -76,7 +76,8 @@ class Solution {
        
     }
 }
-
+// Time complexity: O(m*n)
+// Space complexity:O(n)
 // same dp solution but here i used 1D array because in each itteration of filling table i just dependent on same row and just the above row so to reduce space just took 1d array and overwrite it further
 class Solution {
     public int coinChange(int[] coins, int amount) {
